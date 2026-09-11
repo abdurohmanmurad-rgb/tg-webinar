@@ -572,9 +572,12 @@ button,input,select{font:inherit;color:inherit}
      Javob o'qilmasa (CORS), no-cors bilan qayta yuboriladi va
      muvaffaqiyat deb hisoblanadi — lid mijoz_id orqali topiladi. */
   function joneat(malumot) {
+    /* LID_URL sozlanmagan bo'lsa ATAYLAB xato beramiz.
+       Aks holda sayt "muvaffaqiyatli" deb ko'rsatadi-yu, lid hech qayerga
+       tushmaydi — ya'ni reklama puli behuda ketadi va buni hech kim sezmaydi. */
     if (!API) {
-      console.warn("[lid] CFG.LID_URL bo'sh — yuborilmadi", malumot);
-      return Promise.resolve({ ok: true, quruq: true });
+      console.error("[lid] config.js dagi CFG.LID_URL bo'sh — lid yuborilmadi", malumot);
+      return Promise.reject(new Error("LID_URL sozlanmagan"));
     }
     var tana = JSON.stringify(malumot);
     return fetch(API, {
