@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Telegram Secrets 1.0 — Joyingizni band qiling</title>
+<meta name="description" content="Telegram orqali oyiga $1000+ daromad. Joyingizni band qilish uchun to'lovni amalga oshiring va chekni yuboring.">
+<meta property="og:title" content="Telegram Secrets 1.0 — Joyingizni band qiling">
+<meta property="og:description" content="Telegram orqali oyiga $1000+ daromad.">
+<meta property="og:image" content="og.jpg">
+<meta property="og:type" content="website">
+<link rel="preload" as="image" href="hero-1080.webp" imagesrcset="hero-760.webp 760w, hero-1080.webp 1080w, hero-1280.webp 1280w" imagesizes="100vw">
+
+<style>
+:root{
+  --fon:#070A08;
+  --fon-2:#0D120F;
+  --fon-3:#131A16;
+  --chiziq:#1E2A23;
+  --matn:#F2F7F4;
+  --matn-2:#9DB0A6;
+  --matn-3:#6B7F75;
+  --yashil:#16C060;
+  --yashil-yorqin:#25E077;
+  --yashil-qora:#0B2A19;
+  --qizil:#F2615C;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--fon);
+  color:var(--matn);
+  font:400 16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+button,input,select{font:inherit;color:inherit}
+
+.sahifa{max-width:620px;margin:0 auto;padding:0 16px 56px}
+
+/* ---------- Hero ---------- */
+.hero{margin:0 -16px}
+.hero img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#0A0F0C}
+
+.lead{
+  margin:22px 0 0;
+  text-align:center;
+  font-size:clamp(19px,5.2vw,25px);
+  line-height:1.3;
+  font-weight:700;
+  letter-spacing:-.015em;
+  text-wrap:balance;
+}
+.lead b{color:var(--yashil-yorqin);font-weight:800}
+
+.kichik{
+  margin:10px 0 0;
+  text-align:center;
+  color:var(--matn-2);
+  font-size:15px;
+  text-wrap:balance;
+}
+
+/* ---------- Bo'lim sarlavhasi ---------- */
+.bolim{
+  display:flex;align-items:center;gap:10px;
+  margin:34px 0 14px;
+}
+.bolim .raqam{
+  flex:0 0 auto;
+  width:26px;height:26px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--yashil);color:#04160C;
+  font-size:13px;font-weight:800;
+}
+.bolim h2{
+  margin:0;font-size:16px;font-weight:700;letter-spacing:.01em;
+}
+
+/* ---------- Kartalar ---------- */
+.kartalar{display:flex;flex-direction:column;gap:10px}
+.karta{
+  width:100%;
+  display:flex;align-items:center;gap:14px;
+  padding:14px 15px;
+  background:var(--fon-2);
+  border:1px solid var(--chiziq);
+  border-radius:var(--r);
+  cursor:pointer;
+  text-align:left;
+  transition:border-color .15s,background .15s,transform .08s;
+  -webkit-tap-highlight-color:transparent;
+}
+.karta:hover{border-color:#2C4438;background:var(--fon-3)}
+.karta:active{transform:scale(.99)}
+.karta:focus-visible{outline:2px solid var(--yashil);outline-offset:2px}
+.karta.nusxalandi{border-color:var(--yashil);background:var(--yashil-qora)}
+
+.karta .belgi{
+  flex:0 0 auto;width:38px;height:38px;border-radius:9px;
+  display:grid;place-items:center;
+  background:#182420;font-size:17px;
+}
+.karta .ich{flex:1 1 auto;min-width:0}
+.karta .tur{
+  font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--matn-3);
+}
+.karta .raqam{
+  font-size:clamp(16px,4.4vw,19px);font-weight:700;letter-spacing:.055em;
+  font-variant-numeric:tabular-nums;
+  margin-top:2px;white-space:nowrap;
+}
+.karta .egasi{font-size:13px;color:var(--matn-2);margin-top:2px}
+.karta .nusxa{
+  flex:0 0 auto;font-size:12px;font-weight:700;
+  color:var(--matn-3);display:flex;align-items:center;gap:5px;
+}
+.karta.nusxalandi .nusxa{color:var(--yashil-yorqin)}
+
+.eslatma{
+  margin:12px 0 0;font-size:13.5px;color:var(--matn-3);line-height:1.5;
+}
+
+/* ---------- Forma ---------- */
+.forma{display:flex;flex-direction:column;gap:13px}
+.maydon{display:flex;flex-direction:column;gap:6px}
+.maydon label{font-size:13px;font-weight:600;color:var(--matn-2)}
+.maydon input[type=text],.maydon input[type=tel]{
+  width:100%;padding:13px 14px;
+  background:var(--fon-2);border:1px solid var(--chiziq);border-radius:11px;
+  outline:none;transition:border-color .15s;
+}
+.maydon input::placeholder{color:var(--matn-3)}
+.maydon input:focus{border-color:var(--yashil)}
+.maydon input.xato{border-color:var(--qizil)}
+
+.tanlov{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tanlov label{
+  position:relative;display:block;cursor:pointer;
+  padding:13px 12px;text-align:center;
+  background:var(--fon-2);border:1px solid var(--chiziq);border-radius:11px;
+  font-size:15px;font-weight:600;color:var(--matn-2);
+  transition:border-color .15s,color .15s,background .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.tanlov input{position:absolute;opacity:0;width:0;height:0}
+.tanlov input:checked + span{color:var(--matn)}
+.tanlov label:has(input:checked){
+  border-color:var(--yashil);background:var(--yashil-qora);color:var(--matn);
+}
+.tanlov label:has(input:focus-visible){outline:2px solid var(--yashil);outline-offset:2px}
+
+.yuklash{
+  display:flex;align-items:center;gap:12px;
+  padding:15px 14px;cursor:pointer;
+  background:var(--fon-2);border:1px dashed #2C4438;border-radius:11px;
+  transition:border-color .15s,background .15s;
+}
+.yuklash:hover{border-color:var(--yashil);background:var(--fon-3)}
+.yuklash input{position:absolute;opacity:0;width:0;height:0}
+.yuklash .ikon{
+  flex:0 0 auto;width:36px;height:36px;border-radius:9px;
+  background:#182420;display:grid;place-items:center;font-size:16px;
+}
+.yuklash .yozuv{flex:1 1 auto;min-width:0}
+.yuklash .bosh{font-size:14.5px;font-weight:600}
+.yuklash .ost{font-size:12.5px;color:var(--matn-3);margin-top:1px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.yuklash.bor{border-style:solid;border-color:var(--yashil);background:var(--yashil-qora)}
+
+.oldko{
+  margin-top:10px;border-radius:11px;overflow:hidden;border:1px solid var(--chiziq);
+  position:relative;
+}
+.oldko img{width:100%;max-height:260px;object-fit:contain;background:#000}
+.oldko button{
+  position:absolute;top:8px;right:8px;
+  width:30px;height:30px;border-radius:50%;border:0;
+  background:rgba(0,0,0,.72);color:#fff;font-size:15px;cursor:pointer;
+  display:grid;place-items:center;
+}
+
+.tugma{
+  margin-top:4px;width:100%;padding:16px;border:0;border-radius:12px;
+  background:var(--yashil);color:#04160C;
+  font-size:16.5px;font-weight:800;letter-spacing:-.01em;cursor:pointer;
+  transition:background .15s,transform .08s;
+}
+.tugma:hover:not(:disabled){background:var(--yashil-yorqin)}
+.tugma:active:not(:disabled){transform:scale(.99)}
+.tugma:disabled{opacity:.55;cursor:default}
+
+.xabar{
+  margin-top:12px;padding:12px 14px;border-radius:11px;font-size:14px;line-height:1.45;
+  display:none;
+}
+.xabar.korin{display:block}
+.xabar.xato{background:#2A1414;border:1px solid #4A2220;color:#FFB3B0}
+.xabar.ogoh{background:#2A2411;border:1px solid #4A4220;color:#F5DE9B}
+
+/* ---------- Rahmat ekrani ---------- */
+.rahmat{display:none;text-align:center;padding:30px 0 10px}
+.rahmat.korin{display:block}
+.rahmat .galochka{
+  width:62px;height:62px;margin:0 auto 16px;border-radius:50%;
+  background:var(--yashil);color:#04160C;
+  display:grid;place-items:center;font-size:30px;font-weight:800;
+}
+.rahmat h2{margin:0 0 8px;font-size:22px;font-weight:800;letter-spacing:-.02em}
+.rahmat p{margin:0 auto;max-width:420px;color:var(--matn-2);font-size:15px}
+
+.chek-keyin{
+  display:none;margin-top:24px;padding:18px 16px;
+  background:var(--fon-2);border:1px solid var(--chiziq);border-radius:var(--r);
+  text-align:left;
+}
+.chek-keyin.korin{display:block}
+.chek-keyin h3{margin:0 0 4px;font-size:16px;font-weight:700}
+.chek-keyin p{margin:0 0 14px;font-size:14px;color:var(--matn-2)}
+
+.pastyozuv{
+  margin-top:34px;text-align:center;font-size:12.5px;color:var(--matn-3);line-height:1.6;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<main class="sahifa">
+
+  <div class="hero">
+    <img src="hero-1080.webp"
+         srcset="hero-760.webp 760w, hero-1080.webp 1080w, hero-1280.webp 1280w"
+         sizes="(max-width:640px) 100vw, 620px"
+         width="1280" height="720"
+         alt="Telegram Secrets 1.0 — $1000+ oyiga"
+         fetchpriority="high" decoding="async">
+  </div>
+
+  <p class="lead">Telegram orqali oyiga <b>$1000+</b> daromad</p>
+  <p class="kichik">Quyidagi karta raqamlariga to'lov qilib, joyingizni band qiling.</p>
+
+  <div id="asosiy">
+
+    <div class="bolim"><div class="raqam">1</div><h2>To'lovni amalga oshiring</h2></div>
+
+    <div class="kartalar" id="kartalar">
+      <button type="button" class="karta" data-raqam="9860170105159389">
+        <span class="belgi">💳</span>
+        <span class="ich">
+          <span class="tur">Humo</span>
+          <span class="raqam">9860 1701 0515 9389</span>
+          <span class="egasi">Jamoliddin Z</span>
+        </span>
+        <span class="nusxa" data-nusxa>Nusxalash</span>
+      </button>
+
+      <button type="button" class="karta" data-raqam="5614683107523839">
+        <span class="belgi">💳</span>
+        <span class="ich">
+          <span class="tur">Uzcard</span>
+          <span class="raqam">5614 6831 0752 3839</span>
+          <span class="egasi">Zaynulobiddinov Jamoliddin</span>
+        </span>
+        <span class="nusxa" data-nusxa>Nusxalash</span>
+      </button>
+
+      <button type="button" class="karta" data-raqam="4916990305127893">
+        <span class="belgi">💳</span>
+        <span class="ich">
+          <span class="tur">Visa</span>
+          <span class="raqam">4916 9903 0512 7893</span>
+          <span class="egasi">Jamoliddin Z</span>
+        </span>
+        <span class="nusxa" data-nusxa>Nusxalash</span>
+      </button>
+    </div>
+
+    <p class="eslatma">Karta ustiga bir marta bosing — raqam nusxalanadi. Click yoki Payme ilovasida shu raqamga o'tkazma qiling, so'ng chek skrinshotini quyida yuklang.</p>
+
+    <div class="bolim"><div class="raqam">2</div><h2>Ma'lumotlaringizni qoldiring</h2></div>
+
+    <form class="forma" id="forma" novalidate>
+      <div class="maydon">
+        <label for="ism">Ism familiya</label>
+        <input type="text" id="ism" name="ism" placeholder="Masalan: Jasur Karimov"
+               autocomplete="name" required>
+      </div>
+
+      <div class="maydon">
+        <label for="tel">Telefon raqam</label>
+        <input type="tel" id="tel" name="tel" placeholder="+998 90 123 45 67"
+               autocomplete="tel" inputmode="tel" required>
+      </div>
+
+      <div class="maydon">
+        <label>Yo'nalish</label>
+        <div class="tanlov">
+          <label><input type="radio" name="yonalish" value="Onlayn" checked><span>Onlayn</span></label>
+          <label><input type="radio" name="yonalish" value="Oflayn"><span>Oflayn</span></label>
+        </div>
+      </div>
+
+      <div class="maydon">
+        <label>To'lov cheki (skrinshot)</label>
+        <label class="yuklash" id="yuklashQuti">
+          <input type="file" id="chek" accept="image/*,.pdf">
+          <span class="ikon">📎</span>
+          <span class="yozuv">
+            <span class="bosh" id="yuklashBosh">Chek rasmini tanlang</span>
+            <span class="ost" id="yuklashOst">Ixtiyoriy — keyin ham yuborsangiz bo'ladi</span>
+          </span>
+        </label>
+        <div class="oldko" id="oldko" hidden>
+          <img id="oldkoRasm" alt="Yuklangan chek">
+          <button type="button" id="chekOchir" aria-label="Chekni olib tashlash">✕</button>
+        </div>
+      </div>
+
+      <button type="submit" class="tugma" id="yubor">Joyimni band qilish</button>
+      <div class="xabar" id="xabar" role="alert"></div>
+    </form>
+
+  </div>
+
+  <section class="rahmat" id="rahmat">
+    <div class="galochka">✓</div>
+    <h2 id="rahmatBosh">Ma'lumotlaringiz qabul qilindi</h2>
+    <p id="rahmatMatn">Operatorlarimiz tez orada siz bilan bog'lanishadi.</p>
+
+    <div class="chek-keyin" id="chekKeyin">
+      <h3>Chekni hozir yuboring</h3>
+      <p>To'lovni amalga oshirgan bo'lsangiz, chek skrinshotini yuklang — joyingiz shu zahoti tasdiqlanadi.</p>
+      <label class="yuklash" id="yuklashQuti2">
+        <input type="file" id="chek2" accept="image/*,.pdf">
+        <span class="ikon">📎</span>
+        <span class="yozuv">
+          <span class="bosh" id="yuklashBosh2">Chek rasmini tanlang</span>
+          <span class="ost" id="yuklashOst2">JPG, PNG yoki PDF</span>
+        </span>
+      </label>
+      <div class="oldko" id="oldko2" hidden style="margin-bottom:12px">
+        <img id="oldkoRasm2" alt="Yuklangan chek">
+        <button type="button" id="chekOchir2" aria-label="Chekni olib tashlash">✕</button>
+      </div>
+      <button type="button" class="tugma" id="yubor2" style="margin-top:12px" disabled>Chekni yuborish</button>
+      <div class="xabar" id="xabar2" role="alert"></div>
+    </div>
+  </section>
+
+  <p class="pastyozuv">Telegram Secrets 1.0 · Jamoliddin Zaynulobiddinov</p>
+
+</main>
+
+<script src="config.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var CFG = window.CFG || {};
+  var API = CFG.LID_URL || "";
+  var MAX_BAYT = 8 * 1024 * 1024;      // foydalanuvchi tanlagan fayl chegarasi
+  var MAX_TOMON = 1600;                 // siqishdan keyingi maksimal o'lcham
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* mijoz_id — javobni o'qib bo'lmasa ham 2-qadam lidni topa olishi uchun */
+  var MIJOZ_ID = (function () {
+    try {
+      var bor = sessionStorage.getItem("mijoz_id");
+      if (bor) return bor;
+    } catch (e) {}
+    var yangi = "m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    try { sessionStorage.setItem("mijoz_id", yangi); } catch (e) {}
+    return yangi;
+  })();
+
+  /* ---------------- Nusxalash ---------------- */
+
+  function nusxala(matn) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(matn);
+    }
+    return new Promise(function (bajar, xato) {
+      var ta = document.createElement("textarea");
+      ta.value = matn;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, matn.length);
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      ok ? bajar() : xato(new Error("nusxalab bo'lmadi"));
+    });
+  }
+
+  var tozalagich = null;
+
+  Array.prototype.forEach.call(document.querySelectorAll(".karta"), function (k) {
+    k.addEventListener("click", function () {
+      var raqam = k.getAttribute("data-raqam") || "";
+      var yozuv = k.querySelector("[data-nusxa]");
+      nusxala(raqam).then(function () {
+        Array.prototype.forEach.call(document.querySelectorAll(".karta"), function (b) {
+          b.classList.remove("nusxalandi");
+          var y = b.querySelector("[data-nusxa]");
+          if (y) y.textContent = "Nusxalash";
+        });
+        k.classList.add("nusxalandi");
+        if (yozuv) yozuv.textContent = "✓ Nusxalandi";
+        olcha("karta_nusxalandi", { karta: k.querySelector(".tur").textContent });
+        clearTimeout(tozalagich);
+        tozalagich = setTimeout(function () {
+          k.classList.remove("nusxalandi");
+          if (yozuv) yozuv.textContent = "Nusxalash";
+        }, 2600);
+      })["catch"](function () {
+        if (yozuv) yozuv.textContent = "Qo'lda belgilang";
+        try {
+          var d = document.createRange();
+          d.selectNodeContents(k.querySelector(".raqam"));
+          var s = window.getSelection();
+          s.removeAllRanges(); s.addRange(d);
+        } catch (e) {}
+      });
+    });
+  });
+
+  /* ---------------- Fayl ---------------- */
+
+  function baytMatn(b) {
+    if (b < 1024) return b + " B";
+    if (b < 1024 * 1024) return Math.round(b / 1024) + " KB";
+    return (b / 1024 / 1024).toFixed(1) + " MB";
+  }
+
+  /* Rasmni brauzerda siqadi. PDF yoki siqib bo'lmasa — aslini qaytaradi. */
+  function siq(fayl) {
+    return new Promise(function (bajar) {
+      if (!/^image\//.test(fayl.type)) { bajar({ blob: fayl, tur: fayl.type, nom: fayl.name }); return; }
+      var url = URL.createObjectURL(fayl);
+      var im = new Image();
+      im.onload = function () {
+        try {
+          var k = Math.min(1, MAX_TOMON / Math.max(im.width, im.height));
+          var w = Math.round(im.width * k), h = Math.round(im.height * k);
+          var c = document.createElement("canvas");
+          c.width = w; c.height = h;
+          c.getContext("2d").drawImage(im, 0, 0, w, h);
+          c.toBlob(function (b) {
+            URL.revokeObjectURL(url);
+            if (b && b.size < fayl.size) bajar({ blob: b, tur: "image/jpeg", nom: "chek.jpg" });
+            else bajar({ blob: fayl, tur: fayl.type, nom: fayl.name });
+          }, "image/jpeg", 0.82);
+        } catch (e) {
+          URL.revokeObjectURL(url);
+          bajar({ blob: fayl, tur: fayl.type, nom: fayl.name });
+        }
+      };
+      im.onerror = function () { URL.revokeObjectURL(url); bajar({ blob: fayl, tur: fayl.type, nom: fayl.name }); };
+      im.src = url;
+    });
+  }
+
+  function base64(blob) {
+    return new Promise(function (bajar, xato) {
+      var fr = new FileReader();
+      fr.onload = function () { bajar(String(fr.result).split(",")[1] || ""); };
+      fr.onerror = function () { xato(new Error("fayl o'qilmadi")); };
+      fr.readAsDataURL(blob);
+    });
+  }
+
+  /* Fayl tanlash bloki — ikkala joyda ham ishlaydi */
+  function faylBlok(o) {
+    var holat = { fayl: null };
+    var kirish = $(o.kirish), quti = $(o.quti), bosh = $(o.bosh), ost = $(o.ost);
+    var oldko = $(o.oldko), rasm = $(o.rasm), ochir = $(o.ochir);
+
+    function tozala() {
+      holat.fayl = null;
+      kirish.value = "";
+      quti.classList.remove("bor");
+      bosh.textContent = "Chek rasmini tanlang";
+      ost.textContent = o.ostAsl;
+      oldko.hidden = true;
+      if (rasm.src && rasm.src.indexOf("blob:") === 0) URL.revokeObjectURL(rasm.src);
+      rasm.removeAttribute("src");
+      if (o.ozgardi) o.ozgardi(null);
+    }
+
+    kirish.addEventListener("change", function () {
+      var f = kirish.files && kirish.files[0];
+      if (!f) { tozala(); return; }
+      if (f.size > MAX_BAYT) {
+        alert("Fayl juda katta (" + baytMatn(f.size) + "). 8 MB dan kichik rasm tanlang.");
+        tozala();
+        return;
+      }
+      holat.fayl = f;
+      quti.classList.add("bor");
+      bosh.textContent = "Chek tanlandi";
+      ost.textContent = f.name + " · " + baytMatn(f.size);
+      if (/^image\//.test(f.type)) {
+        rasm.src = URL.createObjectURL(f);
+        oldko.hidden = false;
+      } else {
+        oldko.hidden = true;
+      }
+      if (o.ozgardi) o.ozgardi(f);
+    });
+
+    ochir.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); tozala(); });
+
+    return holat;
+  }
+
+  var chek1 = faylBlok({
+    kirish: "chek", quti: "yuklashQuti", bosh: "yuklashBosh", ost: "yuklashOst",
+    oldko: "oldko", rasm: "oldkoRasm", ochir: "chekOchir",
+    ostAsl: "Ixtiyoriy — keyin ham yuborsangiz bo'ladi"
+  });
+
+  var chek2 = faylBlok({
+    kirish: "chek2", quti: "yuklashQuti2", bosh: "yuklashBosh2", ost: "yuklashOst2",
+    oldko: "oldko2", rasm: "oldkoRasm2", ochir: "chekOchir2",
+    ostAsl: "JPG, PNG yoki PDF",
+    ozgardi: function (f) { $("yubor2").disabled = !f; }
+  });
+
+  /* ---------------- Yuborish ---------------- */
+
+  /* Apps Script /exec ga POST. text/plain — preflight bo'lmasligi uchun.
+     Javob o'qilmasa (CORS), no-cors bilan qayta yuboriladi va
+     muvaffaqiyat deb hisoblanadi — lid mijoz_id orqali topiladi. */
+  function joneat(malumot) {
+    if (!API) {
+      console.warn("[lid] CFG.LID_URL bo'sh — yuborilmadi", malumot);
+      return Promise.resolve({ ok: true, quruq: true });
+    }
+    var tana = JSON.stringify(malumot);
+    return fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: tana
+    }).then(function (r) {
+      return r.text().then(function (t) {
+        try { return JSON.parse(t); }
+        catch (e) { return { ok: r.ok, xom: t.slice(0, 200) }; }
+      });
+    })["catch"](function (e) {
+      console.warn("[lid] to'g'ridan-to'g'ri yuborish ishlamadi, no-cors:", e && e.message);
+      return fetch(API, {
+        method: "POST", mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: tana
+      }).then(function () { return { ok: true, korbolmadi: true }; });
+    });
+  }
+
+  function xabarKorsat(el, matn, tur) {
+    el.textContent = matn;
+    el.className = "xabar korin " + (tur || "xato");
+  }
+  function xabarYop(el) { el.className = "xabar"; }
+
+  function telToza(t) { return String(t || "").replace(/[^\d+]/g, ""); }
+
+  function telTogri(t) {
+    var r = telToza(t).replace(/^\+/, "");
+    if (r.indexOf("998") === 0) return r.length === 12;
+    return r.length === 9;
+  }
+  function telToliq(t) {
+    var r = telToza(t).replace(/^\+/, "");
+    return "+" + (r.indexOf("998") === 0 ? r : "998" + r);
+  }
+
+  function utm() {
+    var p = new URLSearchParams(location.search), o = {};
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
+      if (p.get(k)) o[k] = p.get(k);
+    });
+    o.referrer = document.referrer || "";
+    return o;
+  }
+
+  var forma = $("forma"), xabar = $("xabar"), yubor = $("yubor");
+
+  forma.addEventListener("submit", function (e) {
+    e.preventDefault();
+    xabarYop(xabar);
+
+    var ism = $("ism"), tel = $("tel");
+    ism.classList.remove("xato"); tel.classList.remove("xato");
+
+    if (ism.value.trim().length < 2) {
+      ism.classList.add("xato"); ism.focus();
+      xabarKorsat(xabar, "Ism familiyangizni to'liq yozing.");
+      return;
+    }
+    if (!telTogri(tel.value)) {
+      tel.classList.add("xato"); tel.focus();
+      xabarKorsat(xabar, "Telefon raqamni to'g'ri kiriting: +998 90 123 45 67");
+      return;
+    }
+
+    var yonalish = (forma.querySelector("input[name=yonalish]:checked") || {}).value || "Onlayn";
+
+    yubor.disabled = true;
+    yubor.textContent = "Yuborilmoqda…";
+
+    var tayyorla = chek1.fayl
+      ? siq(chek1.fayl).then(function (s) {
+          return base64(s.blob).then(function (b64) {
+            return { nom: s.nom, tur: s.tur, bayt: s.blob.size, malumot: b64 };
+          });
+        })
+      : Promise.resolve(null);
+
+    tayyorla.then(function (chek) {
+      return joneat({
+        amal: "lid",
+        mijoz_id: MIJOZ_ID,
+        ism: ism.value.trim(),
+        tel: telToliq(tel.value),
+        yonalish: yonalish,
+        chek: chek,
+        sayt: (window.CFG && CFG.SAYT) || "tg-webinar",
+        sahifa: location.href,
+        utm: utm()
+      });
+    }).then(function (javob) {
+      if (javob && javob.ok === false) {
+        throw new Error(javob.xato || "server xatosi");
+      }
+      olcha("lid_yuborildi", { chek: chek1.fayl ? 1 : 0, yonalish: yonalish });
+      $("asosiy").style.display = "none";
+      $("rahmat").classList.add("korin");
+      if (chek1.fayl) {
+        $("rahmatBosh").textContent = "Joyingiz band qilindi";
+        $("rahmatMatn").textContent = "Chekingiz qabul qilindi. Operatorlarimiz tasdiqlab, siz bilan bog'lanishadi.";
+      } else {
+        $("chekKeyin").classList.add("korin");
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    })["catch"](function (err) {
+      console.error("[lid]", err);
+      xabarKorsat(xabar, "Yuborishda xatolik bo'ldi. Internetni tekshirib, qayta urinib ko'ring. Muammo takrorlansa — Telegram orqali yozing.");
+      yubor.disabled = false;
+      yubor.textContent = "Joyimni band qilish";
+    });
+  });
+
+  /* 2-qadam: chekni keyin yuborish */
+  $("yubor2").addEventListener("click", function () {
+    var xabar2 = $("xabar2"), t = $("yubor2");
+    if (!chek2.fayl) return;
+    xabarYop(xabar2);
+    t.disabled = true;
+    t.textContent = "Yuborilmoqda…";
+
+    siq(chek2.fayl).then(function (s) {
+      return base64(s.blob).then(function (b64) {
+        return joneat({
+          amal: "chek",
+          mijoz_id: MIJOZ_ID,
+          chek: { nom: s.nom, tur: s.tur, bayt: s.blob.size, malumot: b64 }
+        });
+      });
+    }).then(function (javob) {
+      if (javob && javob.ok === false) throw new Error(javob.xato || "server xatosi");
+      olcha("chek_yuborildi", {});
+      $("chekKeyin").innerHTML =
+        '<h3 style="margin:0 0 4px">Chek qabul qilindi ✓</h3>' +
+        '<p style="margin:0;font-size:14px;color:var(--matn-2)">Operatorlarimiz tasdiqlab, siz bilan bog\'lanishadi.</p>';
+    })["catch"](function (err) {
+      console.error("[chek]", err);
+      xabarKorsat(xabar2, "Chek yuborilmadi. Qayta urinib ko'ring.");
+      t.disabled = false;
+      t.textContent = "Chekni yuborish";
+    });
+  });
+
+  /* olcha.js bo'lmasa ham sayt ishlashi kerak */
+  function olcha(hodisa, qosh) {
+    try { if (typeof window.olcha === "function") window.olcha(hodisa, qosh); } catch (e) {}
+  }
+})();
+</script>
+<script src="olcha.js" defer></script>
+</body>
+</html>
