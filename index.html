@@ -99,11 +99,14 @@ button,input,select{font:inherit;color:inherit}
 .karta.nusxalandi{border-color:var(--yashil);background:var(--yashil-qora)}
 
 .karta .belgi{
-  flex:0 0 auto;width:38px;height:38px;border-radius:9px;
-  display:grid;place-items:center;
-  background:#182420;font-size:17px;
+  flex:0 0 auto;width:50px;height:33px;border-radius:7px;
+  display:grid;place-items:center;overflow:hidden;
+  background:#FFFFFF;
+  box-shadow:0 0 0 1px rgba(255,255,255,.14), 0 2px 6px rgba(0,0,0,.35);
 }
+.karta .belgi svg{width:100%;height:100%;display:block}
 .karta .ich{flex:1 1 auto;min-width:0}
+.karta .ich > span{display:block}
 .karta .tur{
   font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
   color:var(--matn-3);
@@ -252,7 +255,16 @@ button,input,select{font:inherit;color:inherit}
 
     <div class="kartalar" id="kartalar">
       <button type="button" class="karta" data-raqam="9860170105159389">
-        <span class="belgi">💳</span>
+        <span class="belgi" aria-hidden="true">
+          <svg viewBox="0 0 100 66" role="img">
+            <rect width="100" height="66" fill="#fff"/>
+            <path d="M18 40c6-15 16-22 26-22 7 0 11 4 11 9 0 7-7 12-16 12-4 0-8-1-11-3"
+                  fill="none" stroke="#00A0AF" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="60" cy="24" r="4.5" fill="#F5A623"/>
+            <text x="50" y="58" text-anchor="middle" font-family="Helvetica,Arial,sans-serif"
+                  font-size="16" font-weight="700" letter-spacing="1.5" fill="#0E3B4A">HUMO</text>
+          </svg>
+        </span>
         <span class="ich">
           <span class="tur">Humo</span>
           <span class="raqam">9860 1701 0515 9389</span>
@@ -262,7 +274,17 @@ button,input,select{font:inherit;color:inherit}
       </button>
 
       <button type="button" class="karta" data-raqam="5614683107523839">
-        <span class="belgi">💳</span>
+        <span class="belgi" aria-hidden="true">
+          <svg viewBox="0 0 100 66" role="img">
+            <rect width="100" height="66" fill="#fff"/>
+            <path d="M22 16h12v20c0 6 4 9 10 9s10-3 10-9V16h12v21c0 12-9 19-22 19s-22-7-22-19z"
+                  fill="#1B3A8C"/>
+            <path d="M66 46c8-3 13-9 13-16 0-5-2-9-6-12" fill="none" stroke="#43B02A"
+                  stroke-width="6" stroke-linecap="round"/>
+            <text x="50" y="62" text-anchor="middle" font-family="Helvetica,Arial,sans-serif"
+                  font-size="11" font-weight="700" letter-spacing="1.2" fill="#1B3A8C">UZCARD</text>
+          </svg>
+        </span>
         <span class="ich">
           <span class="tur">Uzcard</span>
           <span class="raqam">5614 6831 0752 3839</span>
@@ -272,7 +294,15 @@ button,input,select{font:inherit;color:inherit}
       </button>
 
       <button type="button" class="karta" data-raqam="4916990305127893">
-        <span class="belgi">💳</span>
+        <span class="belgi" aria-hidden="true">
+          <svg viewBox="0 0 100 66" role="img">
+            <rect width="100" height="66" fill="#fff"/>
+            <text x="50" y="42" text-anchor="middle" font-family="Helvetica,Arial,sans-serif"
+                  font-size="26" font-weight="700" font-style="italic" letter-spacing="1"
+                  fill="#1A1F71">VISA</text>
+            <rect x="24" y="48" width="52" height="4" fill="#F7B600"/>
+          </svg>
+        </span>
         <span class="ich">
           <span class="tur">Visa</span>
           <span class="raqam">4916 9903 0512 7893</span>
