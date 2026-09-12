@@ -257,6 +257,60 @@ button,input,select{font:inherit;color:inherit}
 .xabar.xato{background:#2A1414;border:1px solid #4A2220;color:#FFB3B0}
 .xabar.ogoh{background:#2A2411;border:1px solid #4A4220;color:#F5DE9B}
 
+/* ---------- Telegram suhbat simulyatsiyasi ---------- */
+.suhbat{
+  max-width:440px;margin:24px auto 0;
+  background:#0A1A10;border-radius:22px;overflow:hidden;text-align:left;
+  box-shadow:0 18px 44px rgba(0,0,0,.55);
+}
+.suhbatBosh{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 18px;background:#0D2416;
+}
+.suhbatBosh .avatar{
+  flex:0 0 auto;width:46px;height:46px;border-radius:50%;
+  background:#2BE07A;color:#04160C;
+  display:grid;place-items:center;
+}
+.suhbatBosh .avatar svg{width:22px;height:22px;display:block;margin-left:2px}
+.suhbatBosh .kim{display:flex;flex-direction:column;gap:3px;min-width:0}
+.suhbatBosh .nom{font-size:18px;font-weight:800;letter-spacing:-.01em;color:#fff}
+.suhbatBosh .holat{font-size:14px;font-weight:600;color:#2BE07A}
+
+.suhbatTana{
+  padding:18px;display:flex;flex-direction:column;gap:12px;
+  background:#08160E;min-height:190px;
+}
+.pufak{
+  max-width:84%;padding:13px 17px;font-size:15.5px;line-height:1.4;
+  border-radius:16px;word-break:break-word;font-weight:600;
+}
+.pufak.kirish{align-self:flex-start;background:#14331F;color:#EAF7EF}
+.pufak.chiqish{
+  align-self:flex-end;background:#2BE07A;color:#04160C;
+  min-height:46px;display:flex;align-items:center;gap:2px;font-weight:700;
+}
+.pufak.chiqish .galochkaTg{margin-left:8px;font-size:12px;opacity:.7}
+.kursor{
+  display:inline-block;width:2px;height:18px;background:#04160C;vertical-align:-3px;
+  animation:kursorMilt 1s steps(1) infinite;
+}
+@keyframes kursorMilt{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+.tgTugma{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  max-width:440px;margin:16px auto 0;
+  text-decoration:none;
+  background:#2BE07A;color:#04160C;
+}
+.tgTugma:hover{background:#46F291}
+.tgTugma svg{width:22px;height:22px;flex:0 0 auto}
+
+.qadamOgoh{
+  max-width:440px;margin:14px auto 0;
+  font-size:13.5px;color:var(--matn-3);line-height:1.5;
+}
+
 /* ---------- Rahmat ekrani ---------- */
 .rahmat{display:none;text-align:center;padding:30px 0 10px}
 .rahmat.korin{display:block}
@@ -456,8 +510,39 @@ button,input,select{font:inherit;color:inherit}
 
   <section class="rahmat" id="rahmat">
     <div class="galochka">✓</div>
-    <h2 id="rahmatBosh">Ma'lumotlaringiz qabul qilindi</h2>
-    <p id="rahmatMatn">Operatorlarimiz tez orada siz bilan bog'lanishadi.</p>
+    <h2 id="rahmatBosh">Ajoyib! Siz muvaffaqiyatli ro'yxatdan o'tdingiz</h2>
+    <p id="rahmatMatn">Oxirgi qadam qoldi — quyidagi tugma orqali o'tib Rasmiy Adminga
+      <b style="color:var(--matn)">&laquo;To'lov qildim&raquo;</b> deb yozing.</p>
+
+    <div class="suhbat" aria-hidden="true">
+      <div class="suhbatBosh">
+        <span class="avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21.6 4.2 18.4 19.3c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6 12.6l-4.9-1.5c-1-.3-1-1 .2-1.5l19.1-7.4c.9-.3 1.6.2 1.3 2z"/>
+            </svg>
+          </span>
+        <span class="kim">
+          <span class="nom">Telegram Rasmiy Admin</span>
+          <span class="holat">onlayn</span>
+        </span>
+      </div>
+      <div class="suhbatTana">
+        <div class="pufak kirish">Assalomu alaykum! Ro'yxatdan o'tganingizni ko'rdim.</div>
+        <div class="pufak kirish">To'lovni tasdiqlash uchun menga yozing</div>
+        <div class="pufak chiqish"><span id="yozuvMatn"></span><span class="kursor" id="kursor"></span><span class="galochkaTg" id="galochkaTg" style="display:none">&#10003;&#10003;</span></div>
+      </div>
+    </div>
+
+    <a class="tugma tgTugma" id="adminTugma"
+       href="https://t.me/admen_telegramads" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M21.6 4.2 18.4 19.3c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6 12.6l-4.9-1.5c-1-.3-1-1 .2-1.5l19.1-7.4c.9-.3 1.6.2 1.3 2z"/>
+      </svg>
+      Rasmiy Adminga yozish
+    </a>
+
+    <p class="qadamOgoh">Tugmani bosgach Telegram ochiladi. Adminga &laquo;To'lov qildim&raquo; deb yozing —
+      joyingiz shundan keyin tasdiqlanadi.</p>
 
     <div class="chek-keyin" id="chekKeyin">
       <h3>Chekni hozir yuboring</h3>
@@ -801,12 +886,8 @@ button,input,select{font:inherit;color:inherit}
       olcha("lid_yuborildi", { chek: chek1.fayl ? 1 : 0, yonalish: yonalish });
       $("asosiy").style.display = "none";
       $("rahmat").classList.add("korin");
-      if (chek1.fayl) {
-        $("rahmatBosh").textContent = "Joyingiz band qilindi";
-        $("rahmatMatn").textContent = "Chekingiz qabul qilindi. Operatorlarimiz tasdiqlab, siz bilan bog'lanishadi.";
-      } else {
-        $("chekKeyin").classList.add("korin");
-      }
+      if (!chek1.fayl) $("chekKeyin").classList.add("korin");
+      yozuvniBoshla();
       window.scrollTo({ top: 0, behavior: "smooth" });
     })["catch"](function (err) {
       console.error("[lid]", err);
@@ -845,6 +926,57 @@ button,input,select{font:inherit;color:inherit}
       t.textContent = "Chekni yuborish";
     });
   });
+
+  var adminTugma = $("adminTugma");
+  if (adminTugma) {
+    adminTugma.addEventListener("click", function () { olcha("adminga_otdi", {}); });
+  }
+
+  /* Adminga nima yozish kerakligini ko'rsatuvchi simulyatsiya */
+  var YOZUV = "To'lov qildim";
+  var yozuvIshladi = false;
+
+  function yozuvniBoshla() {
+    if (yozuvIshladi) return;
+    yozuvIshladi = true;
+
+    var matnEl = $("yozuvMatn"), kursorEl = $("kursor"), galEl = $("galochkaTg");
+    if (!matnEl) return;
+
+    var sekin = false;
+    try {
+      sekin = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (e) {}
+
+    if (sekin) {
+      matnEl.textContent = YOZUV;
+      if (kursorEl) kursorEl.style.display = "none";
+      if (galEl) galEl.style.display = "inline";
+      return;
+    }
+
+    function aylanma() {
+      matnEl.textContent = "";
+      if (kursorEl) kursorEl.style.display = "inline-block";
+      if (galEl) galEl.style.display = "none";
+
+      var i = 0;
+      (function harf() {
+        if (i < YOZUV.length) {
+          matnEl.textContent += YOZUV.charAt(i++);
+          setTimeout(harf, 95 + Math.random() * 70);
+          return;
+        }
+        setTimeout(function () {
+          if (kursorEl) kursorEl.style.display = "none";
+          if (galEl) galEl.style.display = "inline";
+          setTimeout(aylanma, 2600);
+        }, 450);
+      })();
+    }
+
+    setTimeout(aylanma, 700);
+  }
 
   /* olcha.js bo'lmasa ham sayt ishlashi kerak */
   function olcha(hodisa, qosh) {
