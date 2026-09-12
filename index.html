@@ -209,6 +209,7 @@ button,input,select{font:inherit;color:inherit}
 .yuklash .yozuv{flex:1 1 auto;min-width:0;width:100%}
 .yuklash .yozuv > span{display:block}
 .yuklash .bosh{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.yuklash .ost:empty{display:none}
 .yuklash .ost{font-size:14px;color:var(--matn-2);margin-top:6px;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
@@ -437,8 +438,8 @@ button,input,select{font:inherit;color:inherit}
             </svg>
           </span>
           <span class="yozuv">
-            <span class="bosh" id="yuklashBosh">Chek rasmini tanlang</span>
-            <span class="ost" id="yuklashOst">Ixtiyoriy — keyin ham yuborsangiz bo'ladi</span>
+            <span class="bosh" id="yuklashBosh">Chek Rasmini Yuboring</span>
+            <span class="ost" id="yuklashOst"></span>
           </span>
         </label>
         <div class="oldko" id="oldko" hidden>
@@ -470,8 +471,8 @@ button,input,select{font:inherit;color:inherit}
             </svg>
           </span>
         <span class="yozuv">
-          <span class="bosh" id="yuklashBosh2">Chek rasmini tanlang</span>
-          <span class="ost" id="yuklashOst2">JPG, PNG yoki PDF</span>
+          <span class="bosh" id="yuklashBosh2">Chek Rasmini Yuboring</span>
+          <span class="ost" id="yuklashOst2"></span>
         </span>
       </label>
       <div class="oldko" id="oldko2" hidden style="margin-bottom:12px">
@@ -641,7 +642,7 @@ button,input,select{font:inherit;color:inherit}
       holat.fayl = null;
       kirish.value = "";
       quti.classList.remove("bor");
-      bosh.textContent = "Chek rasmini tanlang";
+      bosh.textContent = "Chek Rasmini Yuboring";
       ost.textContent = o.ostAsl;
       oldko.hidden = true;
       if (rasm.src && rasm.src.indexOf("blob:") === 0) URL.revokeObjectURL(rasm.src);
@@ -678,13 +679,13 @@ button,input,select{font:inherit;color:inherit}
   var chek1 = faylBlok({
     kirish: "chek", quti: "yuklashQuti", bosh: "yuklashBosh", ost: "yuklashOst",
     oldko: "oldko", rasm: "oldkoRasm", ochir: "chekOchir",
-    ostAsl: "Ixtiyoriy — keyin ham yuborsangiz bo'ladi"
+    ostAsl: ""
   });
 
   var chek2 = faylBlok({
     kirish: "chek2", quti: "yuklashQuti2", bosh: "yuklashBosh2", ost: "yuklashOst2",
     oldko: "oldko2", rasm: "oldkoRasm2", ochir: "chekOchir2",
-    ostAsl: "JPG, PNG yoki PDF",
+    ostAsl: "",
     ozgardi: function (f) { $("yubor2").disabled = !f; }
   });
 
