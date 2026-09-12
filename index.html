@@ -355,7 +355,7 @@ button,input,select{font:inherit;color:inherit}
   </div>
 
   <p class="lead">Telegram orqali oyiga <b>$1000+</b> daromad</p>
-  <p class="kichik">Quyidagi karta raqamlariga to'lov qilib, joyingizni band qiling.</p>
+  <p class="kichik" id="kichikMatn">Quyidagi karta raqamlariga to'lov qilib, joyingizni band qiling.</p>
 
   <div id="asosiy">
 
@@ -885,6 +885,7 @@ button,input,select{font:inherit;color:inherit}
       }
       olcha("lid_yuborildi", { chek: chek1.fayl ? 1 : 0, yonalish: yonalish });
       $("asosiy").style.display = "none";
+      var km = $("kichikMatn"); if (km) km.style.display = "none";
       $("rahmat").classList.add("korin");
       if (!chek1.fayl) $("chekKeyin").classList.add("korin");
       yozuvniBoshla();
