@@ -119,17 +119,24 @@ button,input,select{font:inherit;color:inherit}
 .karta .egasi{font-size:13px;color:var(--matn-2);margin-top:2px}
 .karta .nusxa{
   flex:0 0 auto;
-  width:42px;height:42px;border-radius:10px;
-  display:grid;place-items:center;
+  width:66px;min-height:58px;padding:8px 4px;border-radius:11px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
   background:#182420;color:var(--matn-2);
   transition:background .15s,color .15s;
 }
 .karta:hover .nusxa{background:#20302A;color:var(--matn)}
-.karta .nusxa svg{width:26px;height:26px;display:block}
+.karta .nusxa svg{width:24px;height:24px;display:block}
+.karta .nusxa .yorliq{
+  font-size:10px;font-weight:700;letter-spacing:.02em;line-height:1;
+  text-transform:uppercase;white-space:nowrap;
+}
 .karta .nusxa .galka{display:none}
+.karta .nusxa .yorliqOk{display:none}
 .karta.nusxalandi .nusxa{background:var(--yashil);color:#04160C}
-.karta.nusxalandi .nusxa .nusxaIkon{display:none}
-.karta.nusxalandi .nusxa .galka{display:block}
+.karta.nusxalandi .nusxa .nusxaIkon,
+.karta.nusxalandi .nusxa .yorliqOd{display:none}
+.karta.nusxalandi .nusxa .galka,
+.karta.nusxalandi .nusxa .yorliqOk{display:block}
 
 .eslatma{
   margin:12px 0 0;font-size:13.5px;color:var(--matn-3);line-height:1.5;
@@ -288,6 +295,8 @@ button,input,select{font:inherit;color:inherit}
                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 12.5l5.5 5.5L20 7"/>
           </svg>
+          <span class="yorliq yorliqOd">Nusxa</span>
+          <span class="yorliq yorliqOk">Nusxalandi</span>
         </span>
       </button>
 
@@ -318,6 +327,8 @@ button,input,select{font:inherit;color:inherit}
                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 12.5l5.5 5.5L20 7"/>
           </svg>
+          <span class="yorliq yorliqOd">Nusxa</span>
+          <span class="yorliq yorliqOk">Nusxalandi</span>
         </span>
       </button>
 
@@ -346,6 +357,8 @@ button,input,select{font:inherit;color:inherit}
                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 12.5l5.5 5.5L20 7"/>
           </svg>
+          <span class="yorliq yorliqOd">Nusxa</span>
+          <span class="yorliq yorliqOk">Nusxalandi</span>
         </span>
       </button>
     </div>
@@ -451,23 +464,47 @@ button,input,select{font:inherit;color:inherit}
 
   /* ---------------- Nusxalash ---------------- */
 
+  /* Sinxron nusxalash — foydalanuvchi bosgan zahoti bajariladi.
+     Telegram ichidagi brauzer, iOS Safari va HTTP sahifalarda
+     navigator.clipboard ishlamasligi mumkin, shuning uchun avval
+     eski execCommand usuli, keyin zamonaviy API sinaladi. */
   function nusxala(matn) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(matn);
-    }
-    return new Promise(function (bajar, xato) {
+    var ok = false;
+
+    try {
       var ta = document.createElement("textarea");
       ta.value = matn;
       ta.setAttribute("readonly", "");
-      ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
+      ta.contentEditable = "true";
+      ta.style.cssText =
+        "position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;" +
+        "outline:0;opacity:0;font-size:16px;-webkit-user-select:text;user-select:text";
       document.body.appendChild(ta);
-      ta.select();
-      ta.setSelectionRange(0, matn.length);
-      var ok = false;
-      try { ok = document.execCommand("copy"); } catch (e) {}
+
+      if (/ipad|iphone|ipod/i.test(navigator.userAgent)) {
+        var oraliq = document.createRange();
+        oraliq.selectNodeContents(ta);
+        var tanlov = window.getSelection();
+        tanlov.removeAllRanges();
+        tanlov.addRange(oraliq);
+        ta.setSelectionRange(0, 999999);
+      } else {
+        ta.select();
+        ta.setSelectionRange(0, matn.length);
+      }
+
+      ok = document.execCommand("copy");
       document.body.removeChild(ta);
-      ok ? bajar() : xato(new Error("nusxalab bo'lmadi"));
-    });
+    } catch (e) { ok = false; }
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(matn)["catch"](function () {});
+        ok = true;
+      }
+    } catch (e) {}
+
+    return ok;
   }
 
   var tozalagich = null;
@@ -475,26 +512,29 @@ button,input,select{font:inherit;color:inherit}
   Array.prototype.forEach.call(document.querySelectorAll(".karta"), function (k) {
     k.addEventListener("click", function () {
       var raqam = k.getAttribute("data-raqam") || "";
-      var yozuv = k.querySelector("[data-nusxa]");
-      nusxala(raqam).then(function () {
-        Array.prototype.forEach.call(document.querySelectorAll(".karta"), function (b) {
-          b.classList.remove("nusxalandi");
-        });
+      var ok = nusxala(raqam);
+
+      Array.prototype.forEach.call(document.querySelectorAll(".karta"), function (b) {
+        b.classList.remove("nusxalandi");
+      });
+
+      if (ok) {
         k.classList.add("nusxalandi");
         olcha("karta_nusxalandi", { karta: k.querySelector(".tur").textContent });
         clearTimeout(tozalagich);
         tozalagich = setTimeout(function () {
           k.classList.remove("nusxalandi");
         }, 2600);
-      })["catch"](function () {
-        if (yozuv) yozuv.setAttribute("aria-label", "Qo'lda belgilang");
+      } else {
+        /* Nusxalab bo'lmadi — hech bo'lmasa raqamni belgilab qo'yamiz */
         try {
           var d = document.createRange();
           d.selectNodeContents(k.querySelector(".raqam"));
-          var s = window.getSelection();
-          s.removeAllRanges(); s.addRange(d);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(d);
         } catch (e) {}
-      });
+      }
     });
   });
 
