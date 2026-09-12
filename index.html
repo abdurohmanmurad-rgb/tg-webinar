@@ -544,6 +544,12 @@ button,input,select{font:inherit;color:inherit}
     <p class="qadamOgoh">Tugmani bosgach Telegram ochiladi. Adminga &laquo;To'lov qildim&raquo; deb yozing —
       joyingiz shundan keyin tasdiqlanadi.</p>
 
+    <div class="xabar" id="saqlashXato" role="alert" style="max-width:440px;margin:16px auto 0;text-align:left">
+      <span id="saqlashMatn">Ma'lumotlaringiz saqlanmadi. Internetni tekshirib, qayta yuboring.</span>
+      <button type="button" class="tugma" id="qaytaYubor"
+              style="margin-top:10px;padding:12px;font-size:15px">Qayta yuborish</button>
+    </div>
+
     <div class="chek-keyin" id="chekKeyin">
       <h3>Chekni hozir yuboring</h3>
       <p>To'lovni amalga oshirgan bo'lsangiz, chek skrinshotini yuklang — joyingiz shu zahoti tasdiqlanadi.</p>
@@ -836,6 +842,69 @@ button,input,select{font:inherit;color:inherit}
 
   var forma = $("forma"), xabar = $("xabar"), yubor = $("yubor");
 
+  /* Rahmat ekranini DARHOL ko'rsatamiz — odam kutib turmasin.
+     Ma'lumot orqa fonda yuboriladi; xato bo'lsa shu ekranda ogohlantiramiz. */
+  function rahmatKorsat(chekBor) {
+    $("asosiy").style.display = "none";
+    var km = $("kichikMatn"); if (km) km.style.display = "none";
+    $("rahmat").classList.add("korin");
+    if (!chekBor) $("chekKeyin").classList.add("korin");
+    yozuvniBoshla();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  var oxirgiYuk = null;   // xato bo'lsa qayta yuborish uchun
+
+  function orqaFondaYubor(malumot, fayl) {
+    oxirgiYuk = { malumot: malumot, fayl: fayl };
+    $("saqlashXato").className = "xabar";
+
+    var tayyorla = fayl
+      ? siq(fayl).then(function (sq) {
+          return base64(sq.blob).then(function (b64) {
+            return { nom: sq.nom, tur: sq.tur, bayt: sq.blob.size, malumot: b64 };
+          });
+        })
+      : Promise.resolve(null);
+
+    function urin(qolgan) {
+      return joneat(malumot).then(function (javob) {
+        if (javob && javob.ok === false) throw new Error(javob.xato || "server");
+        return javob;
+      })["catch"](function (err) {
+        if (qolgan > 0) {
+          return new Promise(function (r) { setTimeout(r, 1800); })
+            .then(function () { return urin(qolgan - 1); });
+        }
+        throw err;
+      });
+    }
+
+    return tayyorla.then(function (chek) {
+      malumot.chek = chek;
+      return urin(2);
+    }).then(function () {
+      olcha("lid_yuborildi", { chek: fayl ? 1 : 0, yonalish: malumot.yonalish });
+    })["catch"](function (err) {
+      console.error("[lid]", err);
+      xabarKorsat($("saqlashXato"), "", "xato");
+      $("saqlashXato").innerHTML =
+        '<span>Ma\'lumotlaringiz saqlanmadi. Internetni tekshirib, qayta yuboring.</span>';
+      var t = document.createElement("button");
+      t.type = "button";
+      t.className = "tugma";
+      t.style.cssText = "margin-top:10px;padding:12px;font-size:15px";
+      t.textContent = "Qayta yuborish";
+      t.addEventListener("click", function () {
+        t.disabled = true;
+        t.textContent = "Yuborilmoqda…";
+        orqaFondaYubor(oxirgiYuk.malumot, oxirgiYuk.fayl);
+      });
+      $("saqlashXato").appendChild(t);
+      $("saqlashXato").className = "xabar korin xato";
+    });
+  }
+
   forma.addEventListener("submit", function (e) {
     e.preventDefault();
     xabarYop(xabar);
@@ -856,46 +925,20 @@ button,input,select{font:inherit;color:inherit}
 
     var yonalish = (forma.querySelector("input[name=yonalish]:checked") || {}).value || "Onlayn";
 
-    yubor.disabled = true;
-    yubor.textContent = "Yuborilmoqda…";
+    var malumot = {
+      amal: "lid",
+      mijoz_id: MIJOZ_ID,
+      ism: ism.value.trim(),
+      tel: telToliq(tel.value),
+      yonalish: yonalish,
+      chek: null,
+      sayt: (window.CFG && CFG.SAYT) || "tg-webinar",
+      sahifa: location.href,
+      utm: utm()
+    };
 
-    var tayyorla = chek1.fayl
-      ? siq(chek1.fayl).then(function (s) {
-          return base64(s.blob).then(function (b64) {
-            return { nom: s.nom, tur: s.tur, bayt: s.blob.size, malumot: b64 };
-          });
-        })
-      : Promise.resolve(null);
-
-    tayyorla.then(function (chek) {
-      return joneat({
-        amal: "lid",
-        mijoz_id: MIJOZ_ID,
-        ism: ism.value.trim(),
-        tel: telToliq(tel.value),
-        yonalish: yonalish,
-        chek: chek,
-        sayt: (window.CFG && CFG.SAYT) || "tg-webinar",
-        sahifa: location.href,
-        utm: utm()
-      });
-    }).then(function (javob) {
-      if (javob && javob.ok === false) {
-        throw new Error(javob.xato || "server xatosi");
-      }
-      olcha("lid_yuborildi", { chek: chek1.fayl ? 1 : 0, yonalish: yonalish });
-      $("asosiy").style.display = "none";
-      var km = $("kichikMatn"); if (km) km.style.display = "none";
-      $("rahmat").classList.add("korin");
-      if (!chek1.fayl) $("chekKeyin").classList.add("korin");
-      yozuvniBoshla();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    })["catch"](function (err) {
-      console.error("[lid]", err);
-      xabarKorsat(xabar, "Yuborishda xatolik bo'ldi. Internetni tekshirib, qayta urinib ko'ring. Muammo takrorlansa — Telegram orqali yozing.");
-      yubor.disabled = false;
-      yubor.textContent = "Joyimni band qilish";
-    });
+    rahmatKorsat(!!chek1.fayl);        // <- kutmaymiz
+    orqaFondaYubor(malumot, chek1.fayl);
   });
 
   /* 2-qadam: chekni keyin yuborish */
